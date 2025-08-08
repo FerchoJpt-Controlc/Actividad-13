@@ -47,6 +47,20 @@ class empresaMensajeria:
         for r in self.repartidores:
             print(r)
 
+    def estadisticas(self):
+        if not self.repartidores:
+            print("No hay datos para mostrar estadísticas.")
+            return
+        total = sum(r.paquetes for r in self.repartidores)
+        promedio = total / len(self.repartidores)
+        max_paquetes = max(r.paquetes for r in self.repartidores)
+        min_paquetes = min(r.paquetes for r in self.repartidores)
+
+        print("\nEstadísticas")
+        print(f"Total de paquetes: {total}")
+        print(f"Promedio de paquetes: {promedio:.2f}")
+        print(f"Mayor número de entregas: {max_paquetes}")
+        print(f"Menor número de entregas: {min_paquetes}")
 
 
 
@@ -75,8 +89,7 @@ def Menu():
                 print("\nRANKING")
                 empresa.ranking()
             elif opcion == 4:
-                print()
-
+                empresa.estadisticas()
             elif opcion == 5:
                 print()
 
