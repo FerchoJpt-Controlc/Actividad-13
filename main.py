@@ -1,3 +1,14 @@
+class repartidor:
+    def __init__(self, nombre, paquete, zona):
+        self.nombre = nombre
+        self.paquete = paquete
+        self.zona = zona
+
+    def __str__(self):
+        return f"{self.nombre} {self.paquete} {self.zona}"
+
+
+
 def Menu():
     opcion = 0
 
@@ -15,14 +26,19 @@ def Menu():
 
             opcion = int(opcion_input)
             if opcion == 1:
+                print()
 
             elif opcion == 2:
+                print()
 
             elif opcion == 3:
+                print()
 
             elif opcion == 4:
+                print()
 
             elif opcion == 5:
+                print()
 
             elif opcion == 6:
                 print("gracias por usar el programa")
