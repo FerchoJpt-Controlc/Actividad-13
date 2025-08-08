@@ -1,17 +1,17 @@
-class repartidor:
+class Repartidor:
     def __init__(self, nombre, paquetes, zona):
         self.nombre = nombre
         self.paquetes = paquetes
         self.zona = zona
 
     def __str__(self):
-        return f"{self.nombre} {self.paquete} {self.zona}"
+        return f"{self.nombre} {self.paquetes} {self.zona}"
 
 class empresaMensajeria:
     def __init__(self):
         self.repartidores = {}
 
-    def ingresar(self, repartidor):
+    def ingresar(self, Repartidor):
         nombre = input("Nombre: ")
         paquetes = int(input("Paquetes: "))
         zona = input("Zona: ")
@@ -21,9 +21,25 @@ class empresaMensajeria:
         if paquetes <= 0 or zona.strip() == "":
             print("Error: Datos inválidos.")
             return
-        nuevo = repartidor(nombre, paquetes, zona)
+        nuevo = Repartidor(nombre, paquetes, zona)
         self.repartidores[nombre.lower()] = nuevo
         print("Repartidor agregado con éxito.")
+
+    def quick_sort(self, lista):
+        if len(lista) <= 1:
+            return lista
+
+        pivote = lista[0]
+        mayores = [x for x in lista[1:] if x.paquetes > pivote.paquetes]
+        iguales = [x for x in lista if x.paquetes == pivote.paquetes]
+        menores = [x for x in lista[1:] if x.paquetes < pivote.paquetes]
+
+        return self.quick_sort(mayores) + iguales + self.quick_sort(menores)
+
+    def ordenarPaquetes(self):
+        self.repartidores = self.quick_sort(self.repartidores)
+        print("Lista ordenada de mayor a menor por paquetes.")
+
 
 def Menu():
     empresa = empresaMensajeria()
@@ -43,11 +59,9 @@ def Menu():
 
             opcion = int(opcion_input)
             if opcion == 1:
-                print()
-                empresa.ingresar()
+                empresa.ingresar(Repartidor)
             elif opcion == 2:
-                print()
-
+                empresa.ordenarPaquetes()
             elif opcion == 3:
                 print()
 
