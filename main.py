@@ -40,6 +40,15 @@ class empresaMensajeria:
         self.repartidores = self.quick_sort(self.repartidores)
         print("Lista ordenada de mayor a menor por paquetes.")
 
+    def ranking(self):
+        if not self.repartidores:
+            print("No hay repartidores registrados.")
+            return
+        for r in self.repartidores:
+            print(r)
+
+
+
 
 def Menu():
     empresa = empresaMensajeria()
@@ -63,8 +72,8 @@ def Menu():
             elif opcion == 2:
                 empresa.ordenarPaquetes()
             elif opcion == 3:
-                print()
-
+                print("\nRANKING")
+                empresa.ranking()
             elif opcion == 4:
                 print()
 
