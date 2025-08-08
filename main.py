@@ -1,15 +1,32 @@
 class repartidor:
-    def __init__(self, nombre, paquete, zona):
+    def __init__(self, nombre, paquetes, zona):
         self.nombre = nombre
-        self.paquete = paquete
+        self.paquetes = paquetes
         self.zona = zona
 
     def __str__(self):
         return f"{self.nombre} {self.paquete} {self.zona}"
 
+class empresaMensajeria:
+    def __init__(self):
+        self.repartidores = {}
 
+    def ingresar(self, repartidor):
+        nombre = input("Nombre: ")
+        paquetes = int(input("Paquetes: "))
+        zona = input("Zona: ")
+        if nombre.lower() in self.repartidores:
+            print("Error: Ya existe un repartidor con ese nombre.")
+            return
+        if paquetes <= 0 or zona.strip() == "":
+            print("Error: Datos inválidos.")
+            return
+        nuevo = repartidor(nombre, paquetes, zona)
+        self.repartidores[nombre.lower()] = nuevo
+        print("Repartidor agregado con éxito.")
 
 def Menu():
+    empresa = empresaMensajeria()
     opcion = 0
 
     while opcion != 5:
@@ -27,7 +44,7 @@ def Menu():
             opcion = int(opcion_input)
             if opcion == 1:
                 print()
-
+                empresa.ingresar()
             elif opcion == 2:
                 print()
 
@@ -52,3 +69,4 @@ def Menu():
         if opcion != 7:
             input("\nPresione ENTER para continuar...")
 
+Menu()
